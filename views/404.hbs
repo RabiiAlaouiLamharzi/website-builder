@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+        html {
+            font-family: "Roboto Flex", serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        @keyframes slide-in-from-top {
+            0% { transform: translateY(-30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .slide-in-element {
+            animation: slide-in-from-top 0.5s ease-out;
+        }
+        h1 {
+            font-size: 3em;
+            color: #87890c;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        p {
+            font-size: 1.4em;
+            color: #555;
+            margin-bottom: 50px;
+            text-align: center;
+            padding: 0 30%;
+            font-weight: 200;
+        }
+        .image-placeholder {
+            margin-bottom: 30px;
+            width: 250px;
+            height: 120px;
+        }
+        .back-button {
+            background-color: #000000;
+            border: 2px solid black;
+            color: white;
+            font-size: 1.2em;
+            padding: 10px 25px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button i {
+            margin-right: 10px;
+        }
+        .back-button:hover {
+            background-color: transparent;
+            color: black;
+        }
+        @media (width < 800px) {
+            h1 {
+                font-size: 2.2em;
+                color: #87890c;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 1.2em;
+                color: #555;
+                margin-bottom: 30px;
+                text-align: justify;
+                padding: 0 20%;
+            }
+            .image-placeholder {
+                margin-bottom: 30px;
+                width: 180px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body class="slide-in-element">
+    <div>
+        <img class="image-placeholder" src="/resources/assets/logo-luma-builder.png" alt="">
+    </div>
+
+    <h1>404 - Page Not Found</h1>
+    <p>Oops! The page you're looking for doesn't exist. This could be due to a broken link, insufficient access rights, the page being moved, or a mistyped URL.</p>
+
+    <button class="back-button" onclick="window.history.back();">
+        <i class="fas fa-arrow-left"></i> Go Back
+    </button>
+
+</body>
+</html>

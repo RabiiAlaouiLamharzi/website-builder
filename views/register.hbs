@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Register</title>
+</head>
+<body class="slide-in-element">
+    <div class="account-section">
+        <div class="account-decoration">
+            <img class="main-logo" src="/resources/assets/logo-luma-builder.png" alt="logo">
+            <h1 class="main-title">Luma Builder</h1>
+            <p class="main-desc">Create websites that drive conversions in just minutes.</p>
+            <button class="main-button">Read More</button>
+        </div>
+        <div class="account-text">
+            <div class="account-text-intro">
+                <h1 class="account-title">Hello!</h1>
+                <p class="account-subtitle">Sign Up to Get Started</p>
+            </div>
+            <div class="account-text-inputs">
+                <form id="registrationForm">
+                    <div class="inputs">
+                        <input type="text" placeholder="Full Name ..." id="fullName" required>
+                        <button type="button"><i class="fa-solid fa-user"></i></button>
+                    </div>
+                    <div class="inputs">
+                        <input type="email" placeholder="Email Address ..." id="email" required>
+                        <button type="button"><i class="fa-solid fa-envelope"></i></button>
+                    </div>
+                    <div class="inputs">
+                        <input type="password" placeholder="Password ..." id="password" required>
+                        <button type="button"><i class="fa-solid fa-lock"></i></button>
+                    </div>
+                    <button type="submit" class="submit-button">Register</button>
+                </form>
+                <p class="forgot-password">Forgot Password</p>
+            </div>
+            <a href="/login"><p class="dont-have-account">Don’t have an account? <span style="font-weight: 400;">Login</span></p></a>
+        </div>
+    </div>
+</body>
+<script>
+    const submitButton = document.querySelector(".main-button");
+
+    submitButton.addEventListener("click", function() {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = "Luma Builder is a cloud-based platform for creating landing pages quickly and easily. With its drag-and-drop editor, anyone can build professional-looking websites in minutes, no technical skills needed.";
+
+        paragraph.style.color = "#D6D84F";
+        paragraph.style.fontWeight = "200";
+        paragraph.style.margin = "0";
+        paragraph.style.textAlign = "justify";
+        
+        paragraph.style.opacity = "0";
+        paragraph.style.transition = "opacity 0.5s ease";
+
+        submitButton.replaceWith(paragraph);
+
+        setTimeout(function() {
+            paragraph.style.opacity = "1";
+        }, 10);
+    });
+    document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const submitButton = document.querySelector('.submit-button');
+
+        if (!username) {
+            showTemporaryMessage(submitButton, 'Username cannot be empty!', 'darkred');
+            return;
+        }
+        if (!validateEmail(email)) {
+            showTemporaryMessage(submitButton, 'Invalid email address!', 'darkred');
+            return;
+        }
+        if (password.length < 8) {
+            showTemporaryMessage(submitButton, 'Password too short!', 'darkred');
+            return;
+        }
+
+        try {
+            const response = await fetch('/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, email, password })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                window.location.href = '/login';
+            } else {
+                // Server-side error handling
+                if (result.message.includes('E11000 duplicate key error')) {
+                    if (result.message.includes('username')) {
+                        showTemporaryMessage(submitButton, 'Username already taken!', 'darkred');
+                    } else if (result.message.includes('email')) {
+                        showTemporaryMessage(submitButton, 'Email already registered!', 'darkred');
+                    }
+                } else {
+                    switch (result.message) {
+                        case 'User already registered':
+                            showTemporaryMessage(submitButton, 'Email already registered!', 'darkred');
+                            break;
+                        case 'Invalid email format':
+                            showTemporaryMessage(submitButton, 'Invalid email format!', 'darkred');
+                            break;
+                        default:
+                            showTemporaryMessage(submitButton, `Error: ${result.message}`, 'darkred');
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+            showTemporaryMessage(submitButton, 'Something went wrong!', 'darkred');
+        }
+    });
+
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showTemporaryMessage(button, message, bgColor) {
+        const originalText = button.textContent;
+        const originalBgColor = button.style.backgroundColor;
+        const originalColor = button.style.color;
+
+        button.textContent = message;
+        button.style.backgroundColor = bgColor;
+        button.style.color = 'white';
+
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.backgroundColor = originalBgColor;
+            button.style.color = originalColor;
+        }, 2000);
+    }
+</script>
+</html>

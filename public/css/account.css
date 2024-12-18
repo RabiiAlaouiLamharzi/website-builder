@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: "Roboto Flex", serif;
+}
+a {
+    text-decoration: none;
+}
+@keyframes slide-in-from-top {
+    0% { transform: translateY(-30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.slide-in-element {
+    animation: slide-in-from-top 0.5s ease-out;
+}
+.account-section {
+    display: flex;
+    flex-direction: row;
+}
+.account-decoration {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    padding: 80px 140px;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 2;
+    height: 80vh;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgb(22, 22, 0), rgb(76, 76, 0));
+}
+.account-text {
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 80vh;
+}
+.account-text-intro {
+    width: 100%;
+}
+.account-text-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.account-title {
+    font-size: 35px;
+    margin: 0;
+    text-align: start;
+}
+.account-subtitle {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    margin: 0;
+    text-align: start;
+}
+.main-logo {
+    width: 100px;
+    height: 50px;
+    filter: invert();
+    margin-bottom: 100px;
+}
+.main-title {
+    color: white;
+    margin: 0;
+}
+.main-desc {
+    color: white;
+    font-weight: 200;
+}
+.main-button {
+    background-color: #FFFF00;
+    padding: 10px 30px;
+    margin-top: 5px;
+    font-weight: 400;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.main-button:hover {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 10px 30px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+.inputs {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.inputs input {
+    padding: 15px 20px 15px 60px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 100px;
+    background-color: rgb(255, 255, 255);
+    font-weight: 200;
+    font-size: 16px;
+    width: 76%;
+    margin-bottom: 20px;
+}
+.inputs button {
+    position: absolute;
+    left: 20px;
+    top: 38%;
+    opacity: 0.4;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.inputs button i {
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+.submit-button {
+    width: 100%;
+    padding: 15px 20px 15px 20px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: 200;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.submit-button:hover {
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+}
+.forgot-password {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 200;
+    cursor: pointer;
+    color: black;
+    transition: all 0.2s ease;
+}
+.forgot-password:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+.dont-have-account {
+    text-align: center;
+    margin: 0;
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: 200;
+    cursor: pointer;
+    color: black;
+    transition: all 0.2s ease;
+}
+.dont-have-account:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/resources/css/manager.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type='text/javascript' src='/resources/js/custom.js'></script>
+    <title>Luma Builder</title>
+    {{#if (eq userId adminId)}}
+    <style>
+        .admin {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgb(255, 255, 198);
+            border-bottom: 2px solid rgb(122, 8, 8);
+            color: rgb(122, 8, 8);
+            padding: 5px 15px;
+            font-weight: 200;
+            font-size: 20px;
+            width: 100%;
+        }
+    </style>
+    {{else}}
+    <style>
+        .admin {
+            display: none;
+        }
+        .admin-section {
+            display: none;
+        }
+    </style>
+    {{/if}}
+</head>
+<body class="slide-in-element">
+    <div class="admin">Admin View</div>
+    <div class="dashboard-section">
+        <div class="dashboard-menu">
+            <div>
+                <img class="main-logo" src="/resources/assets/logo-luma-builder.png" alt="logo">
+                <p class="inbox-text">Inbox</p>
+                <div class="dashboard-elements">
+                    <a href="/"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/Categorize.png" alt=""><p class="dashboard-element-text">Dashboard</p></div></a>
+                    <a href="/builder"><div class="dashboard-element"><img class="icon-logo edit" src="/resources/assets/Edit.png" alt=""><p class="dashboard-element-text">Website Builder</p></div></a>
+                    <a href="/manager"><div class="dashboard-element-main"><img class="icon-logo" src="/resources/assets/User.png" alt=""><p class="dashboard-element-text">Website Manager</p></div></a>
+                    <a href="/administration"><div class="admin-section dashboard-element"><img class="icon-logo" style="width: 20px; height: 25px;" src="/resources/assets/admin-panel.png" alt=""><p class="dashboard-element-text">Administration</p></div></a>
+                </div>
+            </div>
+            <div>
+                <div class="dashboard-elements">
+                    <a href="login"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/power.png" alt=""><p class="dashboard-element-text">Log Out</p></div></a>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-body">
+            <div class="dashboard-body-elements">
+                <div class="dashboard-body-projects">
+                    <div>
+                        <div class="project-title-area">
+                            <p class="project-title-text">Projects Completed</p>
+                            <div class="search">
+                                <input type="text" placeholder="Search ..." id="searchInput" onkeyup="searchKeyword()">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="projects-display">
+                            {{#if (eq userId adminId)}}
+                                {{#each pages}}
+                                <div class="project-card">
+                                    <img class="project-card-img" src="/resources/assets/card-img.jpg" alt="">
+                                    <div class="project-card-content">
+                                        <div>
+                                            <h1 class="project-card-content-title">{{this.name}}</h1>
+                                            <p class="project-card-content-link">{{this._id}}</p>
+                                        </div>
+                                        <div class="project-card-content-buttons">
+                                            <a href="details/{{this._id}}"><div class="project-card-content-button"><img class="project-card-content-img" src="/resources/assets/edit-website.png" alt=""></div></a>
+                                            <div class="project-card-content-button" onclick="deletePage('{{this._id}}')"><img class="project-card-content-img" src="/resources/assets/trash.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            {{else}}
+                                {{#each pages}}
+                                {{#if (eq this.user ../userId)}}
+                                    <div class="project-card">
+                                        <img class="project-card-img" src="/resources/assets/card-img.jpg" alt="">
+                                        <div class="project-card-content">
+                                            <div>
+                                                <h1 class="project-card-content-title">{{this.name}}</h1>
+                                                <p class="project-card-content-link">{{this._id}}</p>
+                                            </div>
+                                            <div class="project-card-content-buttons">
+                                                <a href="details/{{this._id}}"><div class="project-card-content-button"><img class="project-card-content-img" src="/resources/assets/edit-website.png" alt=""></div></a>
+                                                <div class="project-card-content-button" onclick="deletePage('{{this._id}}')"><img class="project-card-content-img" src="/resources/assets/trash.png" alt=""></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/if}}
+                                {{/each}}
+                            {{/if}}
+                            <div class="project-add-card">
+                                <a href="/builder">
+                                    <div class="inside">
+                                        <img class="project-add-card-img" src="/resources/assets/groupe.png" alt="">
+                                        <h1 class="project-add-card-title">Click to Create a New Website</h1>
+                                        <p class="project-add-card-desc">Choose a new theme and start crafting your perfect website!</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>

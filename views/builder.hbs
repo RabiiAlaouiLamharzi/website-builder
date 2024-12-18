@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/resources/css/builder.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='/resources/js/lib/axios.min.js'></script>
+    <script type='text/javascript' src='/resources/js/custom.js'></script>
+    <title>Luma Builder</title>
+    {{#if (eq userId adminId)}}
+    <style></style>
+    {{else}}
+    <style>
+        .admin-section {
+            display: none;
+        }
+    </style>
+    {{/if}}
+</head>
+<body class="slide-in-element">
+    <div class="dashboard-section">
+        <div class="dashboard-menu">
+            <div>
+                <img class="main-logo" src="/resources/assets/logo-luma-builder.png" alt="logo">
+                <p class="inbox-text">Inbox</p>
+                <div class="dashboard-elements">
+                    <a href="/"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/Categorize.png" alt=""><p class="dashboard-element-text">Dashboard</p></div></a>
+                    <a href="/builder"><div class="dashboard-element-main"><img class="icon-logo edit" src="/resources/assets/Edit.png" alt=""><p class="dashboard-element-text">Website Builder</p></div></a>
+                    <a href="/manager"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/User.png" alt=""><p class="dashboard-element-text">Website Manager</p></div></a>
+                    <a href="/administration"><div class="admin-section dashboard-element"><img class="icon-logo" style="width: 20px; height: 25px;" src="/resources/assets/admin-panel.png" alt=""><p class="dashboard-element-text">Administration</p></div></a>
+                </div>
+            </div>
+            <div>
+                <div class="dashboard-elements">
+                    <a href="login"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/power.png" alt=""><p class="dashboard-element-text">Log Out</p></div></a>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-body">
+            <div class="dashboard-body-title">
+                <h1 class="intro-dashboard-body">Create your perfect website!</h1>
+                <p class="subtitle-dashboard-body">Start with your basic information</p>
+            </div>
+            <div class="dashboard-body-class">
+                <form id="create-website-form" onsubmit="return validateForm(event)">
+                    <div class="dashboard-body-inputs">
+                        <div class="label-input-grp">
+                            <p>Website Name</p>
+                            <input type="text" id="website-name" placeholder="Luma Builder ..." required>
+                        </div>
+                        <div class="label-input-grp disabled">
+                            <p>Creation Date</p>
+                            <input id="dateInput" disabled type="text">
+                        </div>
+                    </div>
+                    <div class="dashboard-body-inputs">
+                        <div class="label-input-grp">
+                            <p>Description</p>
+                            <textarea name="description" id="description" placeholder="Cloud-based platform for creating landing pages ..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="dashboard-body-inputs">
+                        <div class="label-input-grp">
+                            <p>Website Type</p>
+                            <input type="text" id="website-type" placeholder="Web Application ..." required>
+                        </div>
+                        <div class="label-input-grp">
+                            <p>Website Language</p>
+                            <input type="text" id="website-language" placeholder="English ..." required>
+                        </div>
+                    </div>
+                    <div class="dashboard-body-inputs">
+                        <div class="label-input-grp">
+                            <p>Target Audience</p>
+                            <input type="text" id="target-audience" placeholder="Individuals & Organizations ..." required>
+                        </div>
+                        <div class="label-input-grp">
+                            <p>Industry</p>
+                            <input type="text" id="industry" placeholder="Software Development ..." required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-button">Let’s Begin Building!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

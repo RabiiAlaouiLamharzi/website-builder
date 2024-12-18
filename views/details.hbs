@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/manager.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{{selectedPage.name}}</title>
+    {{#if (eq userId adminId)}}
+    <style></style>
+    {{else}}
+    <style>
+        .admin-section {
+            display: none;
+        }
+    </style>
+    {{/if}}
+</head>
+<body class="slide-in-element">
+    <div class="dashboard-section">
+        <div class="dashboard-menu">
+            <div>
+                <img class="main-logo" src="/resources/assets/logo-luma-builder.png" alt="logo">
+                <p class="inbox-text">Inbox</p>
+                <div class="dashboard-elements">
+                    <a href="/"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/Categorize.png" alt=""><p class="dashboard-element-text">Dashboard</p></div></a>
+                    <a href="/builder"><div class="dashboard-element"><img class="icon-logo edit" src="/resources/assets/Edit.png" alt=""><p class="dashboard-element-text">Website Builder</p></div></a>
+                    <a href="/manager"><div class="dashboard-element-main"><img class="icon-logo" src="/resources/assets/User.png" alt=""><p class="dashboard-element-text">Website Manager</p></div></a>
+                    <a href="/administration"><div class="admin-section dashboard-element"><img class="icon-logo" style="width: 20px; height: 25px;" src="/resources/assets/admin-panel.png" alt=""><p class="dashboard-element-text">Administration</p></div></a>
+                </div>
+            </div>
+            <div>
+                <div class="dashboard-elements">
+                    <a href="/login"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/power.png" alt=""><p class="dashboard-element-text">Log Out</p></div></a>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-body">
+            <br>
+            <br>
+            <div class="return-back">
+                <a onclick="window.history.back();"><img class="arrow-back" src="/resources/assets/arrow-back.png" alt=""></a>
+                <p class="project-back">{{selectedPage.name}}</p>
+            </div>
+            <div class="intro-section">
+                <div class="intro-section-title">
+                    <h1>{{selectedPage.name}}</h1>
+                    <a href="/editor/{{selectedPage._id}}"><div class="status"><img src="/resources/assets/Edit.png" alt=""><p>Go to Builder</p></div></a>
+                </div>
+                <p class="link-website">id: {{selectedPage._id}}</p>
+                <div class="para-section-title">
+                    <p id="pageNameDisplay">{{selectedPage.description}}</p>
+                    <textarea class="textarea-content" id="pageNameInput" style="display: none;">{{selectedPage.description}}</textarea>
+                    <img class="edit-icon" src="/resources/assets/edit-website.png" alt="" id="editPageName">
+                </div>
+            </div>
+            <div class="second-section">
+                <div class="info-section">
+                    <div class="info-section-part">
+                        <p class="info-section-title">Website Information</p>
+                        <div class="info-section-elements">
+                          <p class="info-section-elements-text">Creation Date</p>
+                          <img class="info-section-elements-img" src="/resources/assets/arrow-back.png" alt="">
+                          <p class="info-section-elements-text">{{selectedPage.creationDate}}</p>
+                        </div>
+                        <div class="info-section-elements">
+                          <p class="info-section-elements-text">Website Type</p>
+                          <img class="info-section-elements-img" src="/resources/assets/arrow-back.png" alt="">
+                          <p id="pageTypeDisplay" class="info-section-elements-text">{{selectedPage.websiteType}}</p>
+                          <textarea class="textarea-content" id="pageTypeInput" style="display: none;">{{selectedPage.websiteType}}</textarea>
+                          <img class="edit-icon" src="/resources/assets/edit-website.png" alt="" id="editPageType">
+                        </div>
+                        <div class="info-section-elements">
+                          <p class="info-section-elements-text">Number of Pages</p>
+                          <img class="info-section-elements-img" src="/resources/assets/arrow-back.png" alt="">
+                          <p id="pageNumberDisplay" class="info-section-elements-text">{{selectedPage.numberPages}}</p>
+                          <textarea class="textarea-content" id="pageNumberInput" style="display: none;">{{selectedPage.numberPages}}</textarea>
+                          <img class="edit-icon" src="/resources/assets/edit-website.png" alt="" id="editPageNumber">
+                        </div>
+                    </div>
+                    <div class="info-section-part">
+                        <p class="info-section-title">Additional Information</p>
+                        <div class="info-section-elements">
+                          <p class="info-section-elements-text">Industry</p>
+                          <img class="info-section-elements-img" src="/resources/assets/arrow-back.png" alt="">
+                          <p id="pageIndustryDisplay" class="info-section-elements-text">{{selectedPage.industry}}</p>
+                          <textarea class="textarea-content" id="pageIndustryInput" style="display: none;">{{selectedPage.industry}}</textarea>
+                          <img class="edit-icon" src="/resources/assets/edit-website.png" alt="" id="editPageIndustry">
+                        </div>
+                        <div class="info-section-elements">
+                          <p class="info-section-elements-text">Target Audience</p>
+                          <img class="info-section-elements-img" src="/resources/assets/arrow-back.png" alt="">
+                          <p id="pageAudienceDisplay" class="info-section-elements-text">{{selectedPage.targetAudience}}</p>
+                          <textarea class="textarea-content" id="pageAudienceInput" style="display: none;">{{selectedPage.targetAudience}}</textarea>
+                          <img class="edit-icon" src="/resources/assets/edit-website.png" alt="" id="editPageAudience">
+                        </div>
+                        <div class="info-section-elements">
+                          <p class="info-section-elements-text">Language</p>
+                          <img class="info-section-elements-img" src="/resources/assets/arrow-back.png" alt="">
+                          <p id="pageLanguageDisplay" class="info-section-elements-text">{{selectedPage.language}}</p>
+                          <textarea class="textarea-content" id="pageLanguageInput" style="display: none;">{{selectedPage.language}}</textarea>
+                          <img class="edit-icon" src="/resources/assets/edit-website.png" alt="" id="editPageLanguage">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const editPageNameButton = document.getElementById('editPageName');
+    const pageNameDisplay = document.getElementById('pageNameDisplay');
+    const pageNameInput = document.getElementById('pageNameInput');
+
+    if (editPageNameButton && pageNameDisplay && pageNameInput) {
+      editPageNameButton.addEventListener('click', function () {
+        pageNameDisplay.style.display = 'none';
+        pageNameInput.style.display = 'inline-block';
+        pageNameInput.focus();
+      });
+
+      pageNameInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          savePageName();
+        }
+      });
+    }
+
+    function savePageName() {
+      const pageId = '{{selectedPage._id}}';
+      const newName = pageNameInput.value;
+
+      fetch(`/pages/${pageId}/description`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ description: newName }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            pageNameDisplay.innerText = newName;
+            pageNameDisplay.style.display = 'inline-block';
+            pageNameInput.style.display = 'none';
+          } else {
+            alert('Failed to update page content');
+          }
+        })
+        .catch((err) => {
+          alert('Error: ' + err.message);
+        });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const editPageTypeButton = document.getElementById('editPageType');
+    const pageTypeDisplay = document.getElementById('pageTypeDisplay');
+    const pageTypeInput = document.getElementById('pageTypeInput');
+
+    if (editPageTypeButton && pageTypeDisplay && pageTypeInput) {
+      editPageTypeButton.addEventListener('click', function () {
+        pageTypeDisplay.style.display = 'none';
+        pageTypeInput.style.display = 'inline-block';
+        pageTypeInput.focus();
+      });
+
+      pageTypeInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          savePageType();
+        }
+      });
+    }
+
+    function savePageType() {
+      const pageId = '{{selectedPage._id}}';
+      const newType = pageTypeInput.value;
+
+      fetch(`/pages/${pageId}/website-type`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ websiteType: newType }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            pageTypeDisplay.innerText = newType;
+            pageTypeDisplay.style.display = 'inline-block';
+            pageTypeInput.style.display = 'none';
+          } else {
+            alert('Failed to update page content');
+          }
+        })
+        .catch((err) => {
+          alert('Error: ' + err.message);
+        });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const editPageNumberButton = document.getElementById('editPageNumber');
+    const pageNumberDisplay = document.getElementById('pageNumberDisplay');
+    const pageNumberInput = document.getElementById('pageNumberInput');
+
+    if (editPageNumberButton && pageNumberDisplay && pageNumberInput) {
+      editPageNumberButton.addEventListener('click', function () {
+        pageNumberDisplay.style.display = 'none';
+        pageNumberInput.style.display = 'inline-block';
+        pageNumberInput.focus();
+      });
+
+      pageNumberInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          savePageNumber();
+        }
+      });
+    }
+
+    function savePageNumber() {
+      const pageId = '{{selectedPage._id}}';
+      const newNumber = pageNumberInput.value;
+
+      fetch(`/pages/${pageId}/number-pages`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ numberPages: newNumber }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            pageNumberDisplay.innerText = newNumber;
+            pageNumberDisplay.style.display = 'inline-block';
+            pageNumberInput.style.display = 'none';
+          } else {
+            alert('Failed to update page content');
+          }
+        })
+        .catch((err) => {
+          alert('Error: ' + err.message);
+        });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const editPageIndustryButton = document.getElementById('editPageIndustry');
+    const pageIndustryDisplay = document.getElementById('pageIndustryDisplay');
+    const pageIndustryInput = document.getElementById('pageIndustryInput');
+
+    if (editPageIndustryButton && pageIndustryDisplay && pageIndustryInput) {
+      editPageIndustryButton.addEventListener('click', function () {
+        pageIndustryDisplay.style.display = 'none';
+        pageIndustryInput.style.display = 'inline-block';
+        pageIndustryInput.focus();
+      });
+
+      pageIndustryInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          savePageIndustry();
+        }
+      });
+    }
+
+    function savePageIndustry() {
+      const pageId = '{{selectedPage._id}}';
+      const newIndustry = pageIndustryInput.value;
+
+      fetch(`/pages/${pageId}/industry`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ industry: newIndustry }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            pageIndustryDisplay.innerText = newIndustry;
+            pageIndustryDisplay.style.display = 'inline-block';
+            pageIndustryInput.style.display = 'none';
+          } else {
+            alert('Failed to update page content');
+          }
+        })
+        .catch((err) => {
+          alert('Error: ' + err.message);
+        });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const editPageAudienceButton = document.getElementById('editPageAudience');
+    const pageAudienceDisplay = document.getElementById('pageAudienceDisplay');
+    const pageAudienceInput = document.getElementById('pageAudienceInput');
+
+    if (editPageAudienceButton && pageAudienceDisplay && pageAudienceInput) {
+      editPageAudienceButton.addEventListener('click', function () {
+        pageAudienceDisplay.style.display = 'none';
+        pageAudienceInput.style.display = 'inline-block';
+        pageAudienceInput.focus();
+      });
+
+      pageAudienceInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          savePageAudience();
+        }
+      });
+    }
+
+    function savePageAudience() {
+      const pageId = '{{selectedPage._id}}';
+      const newAudience = pageAudienceInput.value;
+
+      fetch(`/pages/${pageId}/target-audience`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ targetAudience: newAudience }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            pageAudienceDisplay.innerText = newAudience;
+            pageAudienceDisplay.style.display = 'inline-block';
+            pageAudienceInput.style.display = 'none';
+          } else {
+            alert('Failed to update page content');
+          }
+        })
+        .catch((err) => {
+          alert('Error: ' + err.message);
+        });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const editPageLanguageButton = document.getElementById('editPageLanguage');
+    const pageLanguageDisplay = document.getElementById('pageLanguageDisplay');
+    const pageLanguageInput = document.getElementById('pageLanguageInput');
+
+    if (editPageLanguageButton && pageLanguageDisplay && pageLanguageInput) {
+      editPageLanguageButton.addEventListener('click', function () {
+        pageLanguageDisplay.style.display = 'none';
+        pageLanguageInput.style.display = 'inline-block';
+        pageLanguageInput.focus();
+      });
+
+      pageLanguageInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          savePageLanguage();
+        }
+      });
+    }
+
+    function savePageLanguage() {
+      const pageId = '{{selectedPage._id}}';
+      const newLanguage = pageLanguageInput.value;
+
+      fetch(`/pages/${pageId}/language`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ language: newLanguage }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            pageLanguageDisplay.innerText = newLanguage;
+            pageLanguageDisplay.style.display = 'inline-block';
+            pageLanguageInput.style.display = 'none';
+          } else {
+            alert('Failed to update page content');
+          }
+        })
+        .catch((err) => {
+          alert('Error: ' + err.message);
+        });
+    }
+  });
+    </script>
+</body>
+</html>

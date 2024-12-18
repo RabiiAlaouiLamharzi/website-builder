@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Login</title>
+</head>
+<body class="slide-in-element">
+    <div class="account-section">
+        <div class="account-decoration">
+            <img class="main-logo" src="/resources/assets/logo-luma-builder.png" alt="logo">
+            <h1 class="main-title">Luma Builder</h1>
+            <p class="main-desc">Create websites that drive conversions in just minutes.</p>
+            <button class="main-button">Read More</button>
+        </div>
+        <div class="account-text">
+            <div class="account-text-intro">
+                <h1 class="account-title">Hello Again!</h1>
+                <p class="account-subtitle">Welcome Back</p>
+            </div>
+            <div class="account-text-inputs">
+                <form id="loginForm">
+                    <div class="inputs">
+                        <input type="email" placeholder="Email Address ..." id="email" required>
+                        <button type="button"><i class="fa-solid fa-envelope"></i></button>
+                    </div>
+                    <div class="inputs">
+                        <input type="password" placeholder="Password ..." id="password" required>
+                        <button type="button"><i class="fa-solid fa-lock"></i></button>
+                    </div>
+                    <button type="submit" class="submit-button">Login</button>
+                </form>
+                <p class="forgot-password">Forgot Password</p>
+            </div>
+            <a href="/register"><p class="dont-have-account">Don’t have an account? <span style="font-weight: 400;">Register</span></p></a>
+        </div>
+    </div> 
+</body>
+<script>
+        const submitButton = document.querySelector(".main-button");
+
+    submitButton.addEventListener("click", function() {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = "Luma Builder is a cloud-based platform for creating landing pages quickly and easily. With its drag-and-drop editor, anyone can build professional-looking websites in minutes, no technical skills needed.";
+
+        paragraph.style.color = "#D6D84F";
+        paragraph.style.fontWeight = "200";
+        paragraph.style.margin = "0";
+        paragraph.style.textAlign = "justify";
+        
+        paragraph.style.opacity = "0";
+        paragraph.style.transition = "opacity 0.5s ease";
+
+        submitButton.replaceWith(paragraph);
+
+        setTimeout(function() {
+            paragraph.style.opacity = "1";
+        }, 10);
+    });
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const submitButton = document.querySelector('.submit-button');
+
+        try {
+            const response = await fetch('/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                window.location.href = '/';
+            } else {
+                submitButton.textContent = 'Credentials Invalid!';
+                submitButton.style.backgroundColor = 'darkred';
+                submitButton.style.color = 'white';
+
+                setTimeout(() => {
+                    submitButton.textContent = 'Login';
+                    submitButton.style.backgroundColor = '';
+                    submitButton.style.color = '';
+                }, 2000);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            alert('Something went wrong. Please try again later.');
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+p {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Roboto Flex", serif;
+}
+.introductory-title {
+    font-weight: 600;
+    margin: 0;
+}
+.introductory-subtitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+}
+.introductory-img {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+.introductory-para {
+    font-weight: 200;
+    text-align: justify;
+    line-height: 1.4;
+    font-size: 20px;
+    opacity: 0.7;
+    margin: 0;
+}
+@keyframes slide-in-from-top {
+    0% { transform: translateY(-30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.slide-in-element {
+    animation: slide-in-from-top 0.5s ease-out;
+}
+.dashboard-section {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+.main-logo {
+    width: 90px;
+    height: 45px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+.inbox-text {
+    padding-bottom: 10px;
+}
+.dashboard-menu{
+    display: flex;
+    position: fixed;
+    flex-shrink: 0;
+    top: 0;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    overflow: hidden !important;
+    width: 230px;
+    z-index: 1000;
+}
+.dashboard-body {
+    padding: 40px;
+    margin-left: 310px;
+    width: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex-grow: 1;
+}
+.dashboard-body-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+.dashboard-elements{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 240px;
+}
+.dashboard-element-text{
+    font-size: 20px;
+    font-weight: 200;
+}
+.dashboard-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 100px;
+    background-color: white;
+}
+.dashboard-element-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 100px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(131, 131, 0, 0.6));
+}
+.dashboard-element-main p {
+    color: white;
+    font-weight: 600;
+}
+.dashboard-element-main img {
+    filter: invert();
+}
+.icon-logo {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.icon-logo2 {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.black {
+    filter: invert();
+}
+.edit {
+    width: 18px;
+    height: 18px;
+    padding-right: 2px;
+}
+.dashboard-body-elements {
+    display: flex;
+    flex-direction: row;
+}
+.dashboard-body-projects {
+    flex: 2.25;
+}
+.dashboard-body-leaderboard {
+    display: flex;
+    flex-direction: column;
+    flex: 0.75;
+    margin-left: 40px;
+    background-color: rgba(236, 236, 236, 0.8);
+    padding: 40px;
+    border-radius: 20px;
+    gap: 20px;
+    align-items: start;
+    justify-content: center;
+}
+.intro-dashboard-body {
+    font-weight: 200;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 50px;
+    margin: 0;
+    padding-top: 30px;
+}
+.subtitle-dashboard-body {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    font-weight: 200;
+    padding-top: 20px;
+}
+.project-elements{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    padding-top: 30px;
+}
+.project-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0px 15.24px 27.09px 0px rgba(216, 218, 203, 0.5);
+}
+.template-img {
+    width: 70px;
+    height: 70px;
+}
+.template-p {
+    font-weight: 200;
+    font-size: 12px;
+    padding-bottom: 5px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.template-number {
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+}
+.project-title-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    border-radius: 100px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.project-title-text {
+    font-weight: 200;
+    font-size: 20px;
+    color: #858C94;
+}
+.projects-display {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+.projects-display > * {
+    flex: 1 1 calc(50% - 10px);
+    box-sizing: border-box;
+    margin: 0;
+}
+.projects-display.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.project-card {
+    background-color: rgba(236, 236, 236, 0.5);
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0px 15.24px 27.09px 0px rgba(191, 193, 181, 0.5);
+}
+.project-card-img {
+    width: fit-content;
+    width: 100%;
+    border-bottom: 1.5px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.project-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+.project-card-content-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.project-card-content-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+.project-card-content-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.project-card-content-button:hover {
+    background-color: #000000;
+}
+
+.project-card-content-button:hover img {
+    filter: invert();
+}
+.project-card-content-img {
+    height: 20px;
+    width: 20px;
+}
+.project-card-content-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 22px;
+}
+.project-card-content-link {
+    padding-top: 5px;
+    font-weight: 200;
+    font-size: 14px;
+}
+.project-add-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px dashed black;
+    background-color: rgba(236, 236, 236, 0.5);
+    padding: 0px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.inside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.project-add-card-img {
+    width: 100px;
+    height: 100px;
+    padding-bottom: 10px;
+}
+.project-add-card-title {
+    font-size: 20px;
+    text-align: center;
+}
+.project-add-card-desc {
+    font-size: 15px;
+    text-align: center;
+}
+.leaderboard-text-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.leaderboard-title {
+    font-size: 15px;
+    font-weight: 200;
+}
+.leaderboard-img {
+    height: 30px;
+    width: 30px;
+}
+.leaderboard-ranking {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.leaderboard-ranking-card {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50px;
+}
+.leaderboard-ranking-card-info {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+.leaderboard-ranking-card-numb {
+    font-size: 15px;
+    font-weight: 600;
+}
+.leaderboard-card-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+.leaderboard-ranking-card-desc {
+    font-size: 15px;
+    font-weight: 200;
+}
+.leaderboard-ranking-card-score {
+    font-size: 15px;
+    font-weight: 400;
+}

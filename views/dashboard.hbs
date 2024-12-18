@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/resources/css/dashboard.css' />
+    <script type='text/javascript' src='/resources/js/custom.js'></script>
+    <title>Luma Builder</title>
+    {{#if (eq userId adminId)}}
+    <style>
+        .admin {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgb(255, 255, 198);
+            border-bottom: 2px solid rgb(122, 8, 8);
+            color: rgb(122, 8, 8);
+            padding: 5px 15px;
+            font-weight: 200;
+            font-size: 20px;
+            width: 100%;
+        }
+    </style>
+    {{else}}
+    <style>
+        .admin {
+            display: none;
+        }
+        .admin-section {
+            display: none;
+        }
+    </style>
+    {{/if}}
+</head>
+<body class="slide-in-element">
+    <div class="admin">Admin View</div>
+    <div class="dashboard-section">
+        <div class="dashboard-menu">
+            <div>
+                <img class="main-logo" src="/resources/assets/logo-luma-builder.png" alt="logo">
+                <p class="inbox-text">Inbox</p>
+                <div class="dashboard-elements">
+                    <a href="/"><div class="dashboard-element-main"><img class="icon-logo" src="/resources/assets/Categorize.png" alt=""><p class="dashboard-element-text">Dashboard</p></div></a>
+                    <a href="/builder"><div class="dashboard-element"><img class="icon-logo edit" src="/resources/assets/Edit.png" alt=""><p class="dashboard-element-text">Website Builder</p></div></a>
+                    <a href="/manager"><div class="dashboard-element"><img class="icon-logo" src="/resources/assets/User.png" alt=""><p class="dashboard-element-text">Website Manager</p></div></a>
+                    <a href="/administration"><div class="admin-section dashboard-element"><img class="icon-logo" style="width: 20px; height: 25px;" src="/resources/assets/admin-panel.png" alt=""><p class="dashboard-element-text">Administration</p></div></a>
+                </div>
+            </div>
+            <div>
+                <div class="dashboard-elements">
+                    <div class="dashboard-element" onclick="handleLogout()"><img class="icon-logo" src="/resources/assets/power.png" alt=""><p class="dashboard-element-text">Log Out</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-body">
+            <div class="dashboard-body-title">
+                <div>
+                    <h1 class="intro-dashboard-body">Hi <span style="color: black;">{{user.username}}</span></h1>
+                    <p class="subtitle-dashboard-body">Welcome to your dashboard!</p>
+                </div>
+            </div>
+            <div class="dashboard-body-elements">
+                <div class="dashboard-body-projects">
+                    <div class="project-elements">
+                        <div class="project-element">
+                            <img class="template-img" src="/resources/assets/template.png" alt="">
+                            <div>
+                                <p class="template-p">Total Projects</p>
+                                <p class="template-number">
+                                    {{#if (eq userId adminId)}}
+                                        <p class="template-number">{{pages.length}}</p>
+                                    {{else}}
+                                        <p class="template-number">
+                                        {{#each pages}}
+                                            {{#if (eq this.user ../userId)}}
+                                            {{incrementCounter}}
+                                            {{/if}}
+                                        {{/each}}
+                                        {{getCounter}}
+                                        </p>
+                                    {{/if}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="project-element">
+                            <img class="template-img" src="/resources/assets/discussion.png" alt="">
+                            <div>
+                                <p class="template-p">Total Collaborators</p>
+                                <p class="template-number">
+                                    {{#if (eq userId adminId)}}
+                                        <p class="template-number">{{users.length}}</p>
+                                    {{else}}
+                                        <p class="template-number">1</p>
+                                    {{/if}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="project-title-area"><img class="icon-logo2" src="/resources/assets/downward-arrow-gray.png" alt=""><p class="project-title-text">Recent Projects</p></div>
+                        <div class="projects-display">
+                            {{#if (eq userId adminId)}}
+                                {{#each pages}}
+                                <div class="project-card">
+                                    <img class="project-card-img" src="/resources/assets/card-img.jpg" alt="">
+                                    <div class="project-card-content">
+                                    <div>
+                                        <h1 class="project-card-content-title">{{this.name}}</h1>
+                                        <p class="project-card-content-link">{{this._id}}</p>
+                                    </div>
+                                    <div class="project-card-content-buttons">
+                                        <a href="details/{{this._id}}">
+                                        <div class="project-card-content-button">
+                                            <img class="project-card-content-img" src="/resources/assets/edit-website.png" alt="">
+                                        </div>
+                                        </a>
+                                        <div class="project-card-content-button" onclick="deletePage('{{this._id}}')">
+                                        <img class="project-card-content-img" src="/resources/assets/trash.png" alt="">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            {{else}}
+                                {{#each pages}}
+                                {{#if (eq this.user ../userId)}}
+                                    <div class="project-card">
+                                    <img class="project-card-img" src="/resources/assets/card-img.jpg" alt="">
+                                    <div class="project-card-content">
+                                        <div>
+                                        <h1 class="project-card-content-title">{{this.name}}</h1>
+                                        <p class="project-card-content-link">{{this._id}}</p>
+                                        </div>
+                                        <div class="project-card-content-buttons">
+                                        <a href="details/{{this._id}}">
+                                            <div class="project-card-content-button">
+                                            <img class="project-card-content-img" src="/resources/assets/edit-website.png" alt="">
+                                            </div>
+                                        </a>
+                                        <div class="project-card-content-button" onclick="deletePage('{{this._id}}')">
+                                            <img class="project-card-content-img" src="/resources/assets/trash.png" alt="">
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                {{/if}}
+                                {{/each}}
+                            {{/if}}
+                            <div class="project-add-card">
+                                <a href="/builder">
+                                    <div class="inside">
+                                        <img class="project-add-card-img" src="/resources/assets/groupe.png" alt="">
+                                        <h1 class="project-add-card-title">Click to Create a New Website</h1>
+                                        <p class="project-add-card-desc">Choose a new theme and start crafting your perfect website!</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-body-leaderboard">
+                    <img class="introductory-img" src="/resources/assets/waving-hand.png" alt="">
+                    <h1 class="introductory-title">Welcome to Luma Builder!</h1>
+                    <p class="introductory-para">Luma Builder is a cloud-based platform for creating landing pages quickly and easily. With its drag-and-drop editor, anyone can build professional-looking websites in minutes!</p>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+<script>
+    const iconLogo = document.querySelector(".icon-logo2");
+    const projectsDisplay = document.querySelector(".projects-display");
+
+    iconLogo.addEventListener("click", function () {
+        if (projectsDisplay.classList.contains("hidden")) {
+            projectsDisplay.classList.remove("hidden");
+            iconLogo.style.transform = "rotate(0deg)";
+        } else {
+            projectsDisplay.classList.add("hidden");
+            iconLogo.style.transform = "rotate(180deg)";
+        }
+    });
+    async function handleLogout() {
+    try {
+        const response = await fetch('/users/logout', {
+            method: 'POST',
+            credentials: 'include',
+        });
+        const data = await response.json();
+        if (response.ok) {
+            console.log(data.message);
+            window.location.href = '/login';
+        } else {
+            console.error(data.message);
+            alert('Failed to log out');
+        }
+    } catch (error) {
+        console.error('Error logging out:', error);
+    }
+}
+    const projectCards = Array.from(document.querySelectorAll('.project-card'));
+    if (projectCards.length > 1) {
+        projectCards.sort((a, b) =>
+            new Date(b.getAttribute('data-created-at')) - new Date(a.getAttribute('data-created-at'))
+        );
+        const mostRecentCard = projectCards[0];
+        const container = document.querySelector('.projects-display');
+        const addCard = document.querySelector('.project-add-card');
+        container.innerHTML = '';
+        container.appendChild(mostRecentCard);
+        container.appendChild(addCard);
+    }
+</script>
+</html>
